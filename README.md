@@ -161,3 +161,27 @@ mvn test
 - Supplier management
 - Stock level alerts
 - Report generation
+
+### Manual Testing Guide
+A comprehensive testing guide is available in `testing.txt` that includes curl commands for testing:
+- CRUD operations for Products and Suppliers
+- Stock level monitoring and alerts
+- Barcode-based product lookup
+- Weekly report generation
+
+Example from testing.txt:
+```bash
+# Create Product:
+curl -X POST http://localhost:8080/api/inventory/products \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "MacBook Pro M3",
+    "barcode": "MAC2024",
+    "price": 1999.99,
+    "minStockLevel": 5,
+    "currentStock": 10
+  }'
+```
+
+For the complete set of test commands, please refer to `testing.txt` in the project root.
+
