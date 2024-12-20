@@ -151,11 +151,6 @@ docker run -p 8080:8080 inventory-management
 
 ## 🧪 Testing
 
-### Running Tests
-```bash
-mvn test
-```
-
 ### Example Test Cases
 - Product CRUD operations
 - Supplier management
