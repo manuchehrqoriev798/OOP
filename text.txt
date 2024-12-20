@@ -1,0 +1,10 @@
+Implement a back-end project using Spring Boot framework which provide REST API endpoints. The project must be managed with Git and deployed on any hosting platform.
+
+
+
+10. Inventory Management System
+
+CRUD APIs for products, suppliers, and stock.
+Track stock levels and alert when inventory is low.
+Integrate a barcode-based product lookup feature.
+Generate weekly inventory reports.

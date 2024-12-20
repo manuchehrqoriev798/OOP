@@ -1,0 +1,8 @@
+com/inventory/exception/ErrorResponse.class
+com/inventory/exception/ResourceNotFoundException.class
+com/inventory/service/InventoryService.class
+com/inventory/controller/InventoryController.class
+com/inventory/model/Supplier.class
+com/inventory/exception/GlobalExceptionHandler.class
+com/inventory/model/Product.class
+com/inventory/InventoryApplication.class

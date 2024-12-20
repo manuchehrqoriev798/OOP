@@ -1,0 +1,187 @@
+INVENTORY MANAGEMENT SYSTEM DEMO GUIDE
+=====================================
+
+1. CRUD APIs for Products, Suppliers, and Stock
+----------------------------------------------
+
+# Start the application:
+mvn clean install
+mvn spring-boot:run
+
+
+# Create Product:
+curl -X POST http://localhost:8080/api/inventory/products \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "MacBook Pro M3",
+    "barcode": "MAC2024",
+    "price": 1999.99,
+    "minStockLevel": 5,
+    "currentStock": 10
+  }'
+
+# Read Product:
+curl http://localhost:8080/api/inventory/products/1
+
+# Update Product:
+curl -X PUT http://localhost:8080/api/inventory/products/1 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "MacBook Pro M3 Max",
+    "barcode": "MAC2024",
+    "price": 2499.99,
+    "minStockLevel": 5,
+    "currentStock": 10
+  }'
+
+# Delete Product:
+curl -X DELETE http://localhost:8080/api/inventory/products/1
+
+# List All Products:
+curl http://localhost:8080/api/inventory/products
+
+
+
+# Create Supplier:
+curl -X POST http://localhost:8080/api/inventory/suppliers \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Apple Inc",
+    "email": "supply@apple.com",
+    "phone": "1-800-MY-APPLE",
+    "address": "One Apple Park Way, Cupertino, CA 95014"
+  }'
+
+# Read Supplier:
+curl http://localhost:8080/api/inventory/suppliers/1
+
+# Update Supplier:
+curl -X PUT http://localhost:8080/api/inventory/suppliers/1 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Apple Inc.",
+    "email": "supply@apple.com",
+    "phone": "1-800-MY-APPLE",
+    "address": "Updated Address, Cupertino, CA 95014"
+  }'
+
+# Delete Supplier:
+curl -X DELETE http://localhost:8080/api/inventory/suppliers/1
+
+# List All Suppliers:
+curl http://localhost:8080/api/inventory/suppliers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. Track Stock Levels and Alert
+------------------------------
+
+# Start the application:
+mvn clean install
+mvn spring-boot:run
+
+
+# First create a product with stock controls:
+curl -X POST http://localhost:8080/api/inventory/products \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "MacBook Pro M3",
+    "barcode": "MAC2024",
+    "price": 1999.99,
+    "minStockLevel": 5,
+    "currentStock": 10
+  }'
+
+# Reduce stock below minimum level to trigger alert:
+curl -X PUT "http://localhost:8080/api/inventory/products/1/stock?quantity=3"
+
+# Response will show alert:
+************************************************
+                LOW STOCK ALERT                  
+************************************************
+Product: MacBook Pro M3
+Current Stock: 3
+Minimum Stock Level: 5
+************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+3. Barcode-based Product Lookup
+------------------------------
+
+# Start the application:
+mvn clean install
+mvn spring-boot:run
+
+
+# First create a product with barcode:
+curl -X POST http://localhost:8080/api/inventory/products \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "MacBook Pro M3",
+    "barcode": "MAC2024",
+    "price": 1999.99,
+    "minStockLevel": 5,
+    "currentStock": 10
+  }'
+
+# Look up product by barcode:
+curl http://localhost:8080/api/inventory/products/barcode/MAC2024
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4. Generate Weekly Inventory Report
+---------------------------------
+# Start the application:
+mvn clean install
+mvn spring-boot:run
+
+
+# Generate report:
+curl http://localhost:8080/api/inventory/report
+
+# Response will show:
+Weekly Inventory Report
+Generated on: [Current DateTime]
+
+Product: MacBook Pro M3 (ID: 1)
+Current Stock: 10
+Min Stock Level: 5
+------------------------
